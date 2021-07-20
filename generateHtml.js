@@ -2,31 +2,31 @@ const createManager = function(manager) {
     return `<div class="card border-dark mb-3" style="max-width: 18rem;">
     <div class="card-header">Manager</div>
     <div class="card-body text-dark">
-    <h5 class="card-title">${manager.name}</h5>
-    <p class="card-text">${manager.Id}<br>${manager.email}<br>${manager.officeNumber}</p>
+    <h5 class="card-title"> Name: ${manager.name}</h5>
+    <p class="card-text"> ID: ${manager.id}<br> Email: ${manager.email}<br> Office Number: ${manager.officeNumber}</p>
     </div>
 </div>`;
 };
 const createIntern = function(intern) {
     return `<div class="card border-dark mb-3" style="max-width: 18rem;">
-    <div class="card-header">Manager</div>
+    <div class="card-header">Intern</div>
     <div class="card-body text-dark">
-    <h5 class="card-title">${intern.name}</h5>
-    <p class="card-text">${intern.id}<br>${intern.email}<br>${intern.school}</p>
+    <h5 class="card-title">Name: ${intern.name}</h5>
+    <p class="card-text"> ID: ${intern.id}<br>Email:${intern.email}<br>School:${intern.school}</p>
     </div>
 </div>`;
 };
 const createEngineer = function(engineer) {
     return `<div class="card border-dark mb-3" style="max-width: 18rem;">
-    <div class="card-header">Manager</div>
+    <div class="card-header">Engineer</div>
     <div class="card-body text-dark">
-    <h5 class="card-title">${engineer.name}</h5>
-    <p class="card-text"> ${engineer.id} <br>${engineer.email}<br>${engineer.github}</p>
+    <h5 class="card-title">Name: ${engineer.name}</h5>
+    <p class="card-text"> ID: ${engineer.id} <br> Email: ${engineer.email}<br>GitHub:${engineer.username}</p>
     </div>
 </div>`;
 };
 
-function generateHtml(team) {
+function generateHTML(team) {
 
     const managerArray = [];
     const engineerArray = [];
@@ -38,14 +38,13 @@ function generateHtml(team) {
         switch (role) {
             case "Manager":
                 managerArray.push(createManager(employee));
-                break;
-
+                break
             case "Intern":
                 internArray.push(createIntern(employee));
-                break;
+                break
             case "Engineer":
                 engineerArray.push(createEngineer(employee));
-                break;
+
         }
     }
     return `<!doctype html>
@@ -59,13 +58,12 @@ function generateHtml(team) {
     <title>Employee</title>
   </head>
   <body>
-     ${ managerArray.join('') }
-     ${ engineerArray.join('') }
-     ${ internArray.join('') }
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+     ${managerArray.join("")}
+     ${internArray.join("")}
+     ${engineerArray.join("")}
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     
   </body>
 </html>`;
 }
-
-module.exports = generateHtml;
+module.exports = generateHTML;

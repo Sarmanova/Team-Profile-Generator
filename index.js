@@ -1,9 +1,9 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
-const Engineer = require("./lib/Engineer")
+const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
-const generateHtml = require("./generateHtml");
+const generateHTML = require("./generateHTML");
 const team = [];
 
 function newManager() {
@@ -39,13 +39,12 @@ function newManager() {
         team.push(manager);
         newEmployee();
     });
-
 }
 
 function newEmployee() {
     inquirer
         .prompt([{
-                type: "checkbox",
+                type: "list",
                 message: "What is your new employee an Engineer or Intern?",
                 name: "role",
                 choices: ["Engineer", "Intern"],
@@ -55,6 +54,7 @@ function newEmployee() {
                 message: "What is your employee's name ?",
                 name: "name",
             },
+
             {
                 type: "input",
                 message: "What is your employee's ID?",
@@ -69,7 +69,7 @@ function newEmployee() {
                 type: "input",
                 message: "What is your  employee's Github username",
                 when: (list) => list.role == "Engineer",
-                name: "Github",
+                name: "username",
             },
             {
                 type: "input",
@@ -81,16 +81,16 @@ function newEmployee() {
                 type: "list",
                 message: "Would you like to register another employee?",
                 name: "register",
-                choices: ['Yes', 'NO']
+                choices: ["Yes", "NO"],
             },
         ])
         .then((answers) => {
             let managerName = answers.name;
-            let Id = answers.Id;
+            let id = answers.id;
             let email = answers.email;
             if (answers.role == "Engineer") {
-                let github = answers.Github;
-                let engineer = new Engineer(managerName, id, email, github);
+                let username = answers.username;
+                let engineer = new Engineer(managerName, id, email, username);
                 team.push(engineer);
             } else if (answers.role == "Intern") {
                 let school = answers.school;
@@ -99,17 +99,15 @@ function newEmployee() {
             }
             if (answers.register == true) {
                 newEmployee();
-
-            } else { newHtmlFile(); }
-
+            } else {
+                newHtmlFile();
+            }
         });
-
-};
-
+}
 
 const newHtmlFile = () => {
-    fs.writeFile("index.html", generateHtml(team),
-        (err) => (err ? console.log(err) : console.log("Success!"))
+    fs.writeFile("index.html", generateHTML(team), (err) =>
+        err ? console.log(err) : console.log("Success!")
     );
 };
 newManager();

@@ -1,0 +1,20 @@
+body {
+    color: black;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 25px;
+    background-color: blueviolet;
+    font-size: 65px;
+    height: 100%;
+    color: black;
+}
+
+.card {
+    color: black;
+    margin: 0 auto;
+    float: none;
+    margin-bottom: 10px;
+    margin-top: 25px
+}
