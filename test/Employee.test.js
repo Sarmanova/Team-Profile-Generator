@@ -1,8 +1,8 @@
-const Employee = require("../lib/Employee")
+const Employee = require("../lib/Employee");
 test(" Test employee and ", function() {
     var str = new Employee();
-    expect(typeof(str)).toBe("object")
-})
+    expect(typeof str).toBe("object");
+});
 test(" Test employee name ", function() {
     var str = new Employee("Saya");
     expect(str.name).toBe("Saya");
