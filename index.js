@@ -97,7 +97,7 @@ function newEmployee() {
                 let intern = new Intern(managerName, id, email, school);
                 team.push(intern);
             }
-            if (answers.register == true) {
+            if (answers.register == "Yes") {
                 newEmployee();
             } else {
                 newHtmlFile();
